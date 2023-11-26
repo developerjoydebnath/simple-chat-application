@@ -19,14 +19,39 @@ const RightChatBox = () => {
     // clean up the input filed after submission
     const clearForm = () => setMessageText('')
 
+    
     // handle sending message
     const sendMessage = (e) => {
         e.preventDefault()
         const id = chat.length === 0 ? 1 : chat.length + 1;
+
+        // Get the current date and time
+        const currentDate = new Date();
+
+        // Get hours and minutes
+        let hours = currentDate.getHours();
+        let minutes = currentDate.getMinutes();
+
+        // Determine if it's AM or PM
+        var meridiem = hours >= 12 ? 'PM' : 'AM';
+
+        // Convert hours to 12-hour format
+        hours = hours % 12;
+        hours = hours ? hours : 12; // Handle midnight (0 hours)
+
+        // Add leading zero to single-digit minutes
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+
+        // Create a formatted time string
+        const formattedTime = hours + ':' + minutes + ' ' + meridiem;
+
+        const time = formattedTime;
+
         const messageBody = {
             id,
             sender: 'user-2',
-            message: messageText
+            message: messageText,
+            time
         }
         messageText.trim().length > 0 && setChat([...chat, messageBody])
         clearForm();
@@ -60,9 +85,11 @@ const RightChatBox = () => {
                                 <div className="absolute h-2.5 w-2.5 rounded-full bg-green-500 bottom-0.5 right-0.5 border-2 border-white"></div>
                             </div>
                             <div className="order-2">
-                                <h1 className={`border inline-block px-4 py-1.5 rounded-xl max-w-[350px] text-sm ${c.sender === 'user-2' ? 'bg-green-300' : 'bg-orange-300'}`}>
-                                    {c.message}
-                                </h1>
+                                <div className={`border inline-block px-4 py-1.5 rounded-xl max-w-[350px] ${c.sender === 'user-2' ? 'bg-green-300' : 'bg-orange-300'}`}>
+                                    <p className="text-sm me-10">{c.message}</p>
+                                    <p className="text-[10px] text-end">{c.time}</p>
+                                </div>
+                                
                             </div>
                         </div>  
                     </div>
