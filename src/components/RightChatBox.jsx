@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useChat } from "../context/ChatProvider";
-import SendIcon from "../icons/sendIcon";
+import Icon from "../icons/Icon";
 
 const RightChatBox = () => {
     const messageEndRef = useRef(null);
@@ -60,7 +60,7 @@ const RightChatBox = () => {
                                 <div className="absolute h-2.5 w-2.5 rounded-full bg-green-500 bottom-0.5 right-0.5 border-2 border-white"></div>
                             </div>
                             <div className="order-2">
-                                <h1 className="border inline-block px-4 py-1.5 bg-green-300 rounded-xl max-w-[350px] text-sm">
+                                <h1 className={`border inline-block px-4 py-1.5 rounded-xl max-w-[350px] text-sm ${c.sender === 'user-2' ? 'bg-green-300' : 'bg-orange-300'}`}>
                                     {c.message}
                                 </h1>
                             </div>
@@ -90,7 +90,7 @@ const RightChatBox = () => {
 
                         <div className="p-1 cursor-pointer">
                             <label htmlFor="submit">
-                                <SendIcon className="h-7 w-7 cursor-pointer fill-slate-500"/>
+                                <Icon className="h-7 w-7 cursor-pointer fill-slate-500"/>
                             </label>
                             <input className="hidden" type="submit" id="submit" value="" />
                         </div>

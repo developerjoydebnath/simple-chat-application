@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useChat } from "../context/ChatProvider";
-import SendIcon from "../icons/sendIcon";
+import Icon from "../icons/Icon";
 
 const LeftChatBox = () => {
     const messageRef = useRef(null);
@@ -41,7 +41,7 @@ const LeftChatBox = () => {
                         <div className="absolute h-3 w-3 rounded-full bg-green-500 bottom-0.5 right-0.5 border-2 border-white"></div>
                     </div>
                     <div className="">
-                        <h3 className="text-lg">User 2</h3>
+                        <h3 className="text-lg">User 1</h3>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@ const LeftChatBox = () => {
                                 <div className="absolute h-2.5 w-2.5 rounded-full bg-green-500 bottom-0.5 right-0.5 border-2 border-white"></div>
                             </div>
                             <div className="order-2">
-                                <h1 className="border inline-block px-4 py-1.5 bg-green-300 rounded-xl max-w-[350px] text-sm">
+                                <h1 className={`border inline-block px-4 py-1.5 rounded-xl max-w-[350px] text-sm ${c.sender === 'user-1' ? 'bg-green-300' : 'bg-orange-300'}`}>
                                     {c.message}
                                 </h1>
                             </div>
@@ -89,7 +89,7 @@ const LeftChatBox = () => {
 
                         <div className="p-1 cursor-pointer">
                             <label htmlFor="submit-1">
-                                <SendIcon className="h-7 w-7 cursor-pointer fill-slate-500"/>
+                                <Icon className="h-7 w-7 cursor-pointer fill-slate-500"/>
                             </label>
                             <input className="hidden" type="submit" id="submit-1" value="" />
                         </div>
